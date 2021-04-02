@@ -1,11 +1,15 @@
 #Import modules
 from django.shortcuts import render
-from django.http import HttpResponse
+# from django.http import HttpResponse
+
+from .models import Article
 
 # Create your views here.
 def index(request):
     context = {
-        'name': 'Rasoul',
-        'age': '15',
+        'articles': Article.objects.filter(status='p').order_by('-publish')
     }
-    return render(request, 'index.html', context)
+    return render(request, 'blog/index.html', context)
+
+def article(request):
+    pass
