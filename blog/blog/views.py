@@ -11,5 +11,8 @@ def index(request):
     }
     return render(request, 'blog/index.html', context)
 
-def article(request):
-    pass
+def article_content(request, slug):
+    context = {
+        'article': Article.objects.get(slug=slug)
+    }
+    return render(request, 'blog/post.html', context)
