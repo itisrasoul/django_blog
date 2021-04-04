@@ -1,7 +1,20 @@
+<!-- Load base.html -->
 {% extends 'blog/base.html' %}
+
+<!-- Load Static files -->
 {% load static %}
-{% block title %}Django Blog{% endblock %}
-{% block header-title %}Welcome to Django Blog!{% endblock %}
-{% block sub-header-title %}Just for practice!{% endblock %}
-{% block copyright-footer %}Copyright &copy; Django Blog 2020{% endblock %}
+
+<!-- Title -->
+{% block title %}جنگو بلاگ{% endblock %}
+
+<!-- Header Title -->
+{% block header-title %}به جنگو بلاگ خوش آمدید!{% endblock %}
+
+<!-- Sub-header Title -->
+{% block sub-header-title %}این پروژه فقط برای تمرین است!{% endblock %}
+
+<!-- Header Image -->
 {% block header-img %}{% static 'blog/img/home-bg.jpg' %}{% endblock %}
+
+<!-- Copyright Text -->
+{% block copyright-footer %}Copyright &copy; Django Blog 2020{% endblock %}

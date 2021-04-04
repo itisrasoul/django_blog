@@ -1,8 +1,20 @@
+<!-- Load base.html -->
 {% extends 'blog/base.html' %}
+
+<!-- Header Image -->
 {% block header-img %}{{ article.thumbnail.url }}{% endblock %}
+
+<!-- Title -->
 {% block title %}{{ article.title }}{% endblock %}
+
+<!-- Header Title -->
 {% block header-title %}{{ article.title }}{% endblock %}
+
+<!-- Sub-header Title -->
 {% block sub-header-title %}{% endblock %}
-{% block article-description %}{{ article.description }}{% endblock %}
+
+<!-- Article Content -->
+{% block article-description %}{{ article.description|linebreaks }}{% endblock %}
+
+<!-- Copyright Text -->
 {% block copyright-footer %}Copyright &copy; Django Blog 2020{% endblock %}
-{% block end %}{{ article.thumbnail.url }}{% endblock %}
