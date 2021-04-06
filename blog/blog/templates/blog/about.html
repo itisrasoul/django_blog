@@ -5,7 +5,7 @@
 {% load static %}
 
 <!-- Title -->
-{% block title %}جنگو بلاگ  {% endblock %}
+{% block title %} درباره ما {% endblock %}
 
 <!-- Header Title -->
 {% block header-title %}درباره ما{% endblock %}
@@ -17,7 +17,9 @@
 {% block header-img %}{% static 'blog/img/about-bg.jpg' %}{% endblock %}
 
 <!-- Page Content -->
-{% block page-content %}{% endblock %}
+{% block page-content %}
+<h3>{{ about.description }}</h3>
+{% endblock %}
 
 <!-- Copyright Text -->
 {% block copyright-footer %}Copyright &copy; Django Blog 2020{% endblock %}

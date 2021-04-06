@@ -3,9 +3,7 @@ from django.db import models
 from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
 
-# Create Models
-
-
+# Create Category model
 class Category(models.Model):
     title = models.CharField(max_length=64, verbose_name="عنوان دسته بندی")
     description = models.TextField(
@@ -26,13 +24,14 @@ class Category(models.Model):
         return self.title
 
 
+# Create Article model
 class Article(models.Model):
     STATUS_CHOICES = (
         ('d', 'پیش نویس'),
         ('p', 'منتشر شده'),
     )
     title = models.CharField(max_length=64, verbose_name="عنوان")
-    description = models.TextField(max_length=1024, verbose_name="محتوا")
+    description = models.TextField(verbose_name="محتوا")
     slug = models.SlugField(max_length=128, unique=True,
                             verbose_name="آدرس مقاله")
     thumbnail = models.ImageField(
@@ -53,6 +52,7 @@ class Article(models.Model):
         return self.title
 
 
+#Create About us model
 class About(models.Model):
     name = models.CharField(max_length=128, verbose_name='نام')
     phone_number = PhoneNumberField(verbose_name='شماره تلفن')

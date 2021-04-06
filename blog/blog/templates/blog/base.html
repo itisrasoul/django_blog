@@ -19,6 +19,7 @@
 
   <!-- Custom styles for this template -->
   <link href="{% static 'blog/css/clean-blog.min.css' %}" rel="stylesheet">
+  <link href="{% static 'blog/css/rtl.css' %}" rel="stylesheet">
 
 </head>
 
@@ -38,7 +39,7 @@
             <a class="nav-link" href="{% url 'blog:about_us' %}">درباره ما</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="contact.html">تماس باما</a>
+            <a class="nav-link" href="{% url 'blog:contact_us' %}">تماس باما</a>
           </li>
         </ul>
       </div>
@@ -92,7 +93,7 @@
         
         <!-- Pager -->
         <div class="clearfix">
-          <a class="btn btn-primary float-right" href="#">پست های قدیمی تر &rarr;</a>
+          <a class="btn btn-primary float-right" href="#">پست های قدیمی تر &larr;</a>
         </div>
       </div>
     </div>

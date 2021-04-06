@@ -2,7 +2,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 
-from .models import Article, Category
+from .models import Article, Category, About
 
 
 
@@ -23,8 +23,15 @@ def article_content(request, slug):
 
 # Create view for about us content
 def about_us(request):
-    return render(request, 'blog/about.html')
+    context = {
+        'about': About.objects.first()
+    }
+    return render(request, 'blog/about.html', context)
+
 
 # Create view for contact us content
 def contact_us(request):
-    return render(request, 'blog/contact.html')
+    context = {
+        'contact': About.objects.first()
+    }
+    return render(request, 'blog/contact.html', context)
