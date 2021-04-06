@@ -35,7 +35,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="about.html">درباره ما</a>
+            <a class="nav-link" href="{% url 'blog:about_us' %}">درباره ما</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="contact.html">تماس باما</a>
@@ -76,7 +76,7 @@
               {{ article.description|truncatewords:30 }}
             </h3>
           </a>
-          <p class="post-meta">Posted on {{ article.publish }}</p>
+          <p class="post-meta">پست شده در {{ article.publish }}</p>
         </div>
         <hr>
         {% endfor %}
@@ -84,7 +84,7 @@
           <div class="container">
             <div class="row">
               <div class="col-lg-8 col-md-10 mx-auto">
-                <p>{% block article-description %}{% endblock %}</p>
+                <p>{% block page-content %}{% endblock %}</p>
               </div>
             </div>
           </div>

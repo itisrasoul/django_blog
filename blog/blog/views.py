@@ -3,14 +3,14 @@ from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 
 from .models import Article, Category
+
+
+
 # Create view for blog index
-
-
 def index(request):
     context = {
         'articles': Article.objects.filter(status='p').order_by('-publish')
     }
-    print(Category.get_deferred_fields(Category.objects))
     return render(request, 'blog/index.html', context)
 
 
@@ -21,5 +21,10 @@ def article_content(request, slug):
     }
     return render(request, 'blog/post.html', context)
 
-def category_articles(request, slug):
-    pass
+# Create view for about us content
+def about_us(request):
+    return render(request, 'blog/about.html')
+
+# Create view for contact us content
+def contact_us(request):
+    return render(request, 'blog/contact.html')

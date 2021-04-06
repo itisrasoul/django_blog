@@ -1,6 +1,7 @@
 # Import modules
 from django.db import models
 from django.utils import timezone
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create Models
 
@@ -9,7 +10,7 @@ class Category(models.Model):
     title = models.CharField(max_length=64, verbose_name="عنوان دسته بندی")
     description = models.TextField(
         max_length=200, verbose_name="توضیحات دسته بندی")
-    slug = models.SlugField(max_length=100, unique=True,
+    slug = models.SlugField(max_length=128, unique=True,
                             verbose_name="آدرس دسته بندی")
     thumbnail = models.ImageField(
         upload_to='images', verbose_name="تصویر دسته بندی")
@@ -31,8 +32,8 @@ class Article(models.Model):
         ('p', 'منتشر شده'),
     )
     title = models.CharField(max_length=64, verbose_name="عنوان")
-    description = models.TextField(max_length=300, verbose_name="محتوا")
-    slug = models.SlugField(max_length=100, unique=True,
+    description = models.TextField(max_length=1024, verbose_name="محتوا")
+    slug = models.SlugField(max_length=128, unique=True,
                             verbose_name="آدرس مقاله")
     thumbnail = models.ImageField(
         upload_to='images', verbose_name="تصویر مقاله")
@@ -50,3 +51,18 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class About(models.Model):
+    name = models.CharField(max_length=128, verbose_name='نام')
+    phone_number = PhoneNumberField(verbose_name='شماره تلفن')
+    description = models.TextField(max_length=512, verbose_name='توضیحات')
+    address = models.CharField(max_length=256, verbose_name='آدرس')
+    email = models.EmailField(max_length=256, verbose_name='ایمیل')
+
+    class Meta:
+        verbose_name = 'درباره ما'
+        verbose_name_plural = 'درباره ما'
+
+    def __str__(self):
+        return self.name

@@ -1,8 +1,7 @@
 # Import modules
 from django.contrib import admin
 
-from .models import Article, Category
-
+from .models import Article, Category, About
 
 
 # Register models
@@ -26,6 +25,12 @@ class CategoryAdmin(admin.ModelAdmin):
     list_filter = (['status'])
     search_fields = ('title', 'description', 'position')
     prepopulated_fields = {'slug': ('title',)}
+
+
+@admin.register(About)
+class AboutAdmin(admin.ModelAdmin):
+    list_display = ('name', )
+    search_fields = ('name', 'email', 'phone_number')
 
 
 
