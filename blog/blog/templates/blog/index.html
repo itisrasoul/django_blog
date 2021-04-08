@@ -39,5 +39,26 @@
 {% endfor %}
 {% endblock %}
 
+<!-- Pagination -->
+{% block paginate %}
+<div class="clearfix pager-botton">
+  <span class="step-links">
+      {% if page_obj.has_previous %}
+          <a class="btn btn-primary float-right ml-auto" href="?page=1">&larr; صفحه اول</a>
+          <a class="btn btn-primary float-right ml-3" href="?page={{ page_obj.previous_page_number }}">  صفحه قبل</a>
+      {% endif %}
+
+      <span class="current ml-auto">
+          صفحه {{ page_obj.number }} از {{ page_obj.paginator.num_pages }}.
+      </span>
+
+      {% if page_obj.has_next %}
+          <a class="btn btn-primary float-right ml-auto" href="?page={{ page_obj.paginator.num_pages }}">صفحه آخر &larr;</a>
+          <a class="btn btn-primary float-right ml-3" href="?page={{ page_obj.next_page_number }}">صفحه بعد </a>
+          {% endif %}
+  </span>
+</div>
+{% endblock %}
+
 <!-- Copyright Text -->
 {% block copyright-footer %}Copyright &copy; Django Blog 2020{% endblock %}
