@@ -5,16 +5,16 @@
 {% load static %}
 
 <!-- Title -->
-{% block title %}جنگو بلاگ{% endblock %}
+{% block title %}جنگو بلاگ | {{ category.title }}{% endblock %}
 
 <!-- Header Title -->
-{% block header-title %}به جنگو بلاگ خوش آمدید!{% endblock %}
+{% block header-title %}{{ category.title }}{% endblock %}
 
 <!-- Sub-header Title -->
-{% block sub-header-title %}این پروژه فقط برای تمرین است!{% endblock %}
+{% block sub-header-title %}پست های مربوط به {{ category.title }}{% endblock %}
 
 <!-- Header Image -->
-{% block header-img %}{% static 'blog/img/home-bg.jpg' %}{% endblock %}
+{% block header-img %}{{ category.thumbnail.url }}{% endblock %}
 
 <!-- Articles List -->
 {% block articles-list %}
@@ -32,9 +32,6 @@
   </a>
 <p class="post-meta">پست شده در {{ article.publish }}</p>
 </div>
-{% for cat in article.category_published %}
-  <a href="{% url 'blog:category' cat.slug %}">#{{ cat.title }}</a>
-{% endfor %}
 <hr>
 {% endfor %}
 {% endblock %}

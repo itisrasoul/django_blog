@@ -1,4 +1,5 @@
 {% load static %}
+{% load blog_categories %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,17 +31,18 @@
     <div class="container">
       <a class="navbar-brand" href="{% url 'blog:index' %}">جنگو بلاگ</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
+        منو
         <i class="fas fa-bars"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+            {% categories %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'blog:about_us' %}">درباره ما</a>
-          </li>
-          <li class="nav-item">
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{% url 'blog:contact_us' %}">تماس باما</a>
-          </li>
+        </li>
         </ul>
       </div>
     </div>
@@ -65,36 +67,34 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        {% for article in articles %}
-        <div class="post-preview">
-          <a href="{% url 'blog:article_content' article.slug %}">
-            <h2 class="post-title">
-              {{ article.title }}
-            </h2>
-            <h3 class="post-subtitle">
-              <!-- 30 is the limit of the words of article description shown in index,
-              you may want to change it -->
-              {{ article.description|truncatewords:30 }}
-            </h3>
-          </a>
-          <p class="post-meta">پست شده در {{ article.publish }}</p>
-        </div>
-        <hr>
-        {% endfor %}
+          {% block articles-list %}{% endblock %}
+          
         <article>
           <div class="container">
             <div class="row">
-              <div class="col-lg-8 col-md-10 mx-auto">
-                <p>{% block page-content %}{% endblock %}</p>
-              </div>
+                <p>{% block article-content %}{% endblock %}</p>
             </div>
           </div>
         </article>
         
         <!-- Pager -->
-        <div class="clearfix">
-          <a class="btn btn-primary float-right" href="#">پست های قدیمی تر &larr;</a>
-        </div>
+          <div class="clearfix pager-botton">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a class="btn btn-primary float-right ml-auto" href="?page=1">&larr; صفحه اول</a>
+                    <a class="btn btn-primary float-right ml-3" href="?page={{ page_obj.previous_page_number }}">  صفحه قبل</a>
+                {% endif %}
+        
+                <span class="current ml-auto">
+                    صفحه {{ page_obj.number }} از {{ page_obj.paginator.num_pages }}.
+                </span>
+        
+                {% if page_obj.has_next %}
+                    <a class="btn btn-primary float-right ml-auto" href="?page={{ page_obj.paginator.num_pages }}">صفحه آخر &larr;</a>
+                    <a class="btn btn-primary float-right ml-3" href="?page={{ page_obj.next_page_number }}">صفحه بعد </a>
+                    {% endif %}
+            </span>
+          </div>
       </div>
     </div>
   </div>
