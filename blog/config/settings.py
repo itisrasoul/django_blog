@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'hki%(182xidn0o#3&r!+c*i-0f@##enekwxi98&-_=)=@0y2d*'
+SECRET_KEY = '' 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -76,11 +76,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_blog',
-        'HOST': 'localhost',
-        'PORT': '5432',
-        'PASSWORD': 'rasoolghasemi',
+        'ENGINE': '',
+        'NAME': '',
+        'HOST': '',
+        'PORT': '',
+        'PASSWORD': ',
     }
 }
 
