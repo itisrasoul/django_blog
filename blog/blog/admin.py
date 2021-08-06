@@ -20,8 +20,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'status', )
-    ordering = ['title', 'status']
+    list_display = ('position', 'title', 'parent', 'status')
     list_filter = (['status'])
     search_fields = ('title', 'description', 'position')
     prepopulated_fields = {'slug': ('title',)}

@@ -10,6 +10,7 @@ class ArticlesManager(models.Manager):
 
 # Create Category model
 class Category(models.Model):
+    parent = models.ForeignKey('self', default=None, null=True, blank=True, on_delete=models.SET_NULL, verbose_name='زیردسته', related_name='children')
     title = models.CharField(max_length=64, verbose_name="عنوان دسته بندی")
     description = models.TextField(
         max_length=200, verbose_name="توضیحات دسته بندی")
@@ -23,7 +24,7 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'دسته بندی'
         verbose_name_plural = 'دسته بندی ها'
-        ordering = ['position']
+        ordering = ['parent__id', 'position']
 
     def __str__(self):
         return self.title
@@ -36,7 +37,7 @@ class Article(models.Model):
         ('p', 'منتشر شده'),
     )
     title = models.CharField(max_length=64, verbose_name="عنوان")
-    description = models.TextField(max_length=1024, verbose_name="محتوا")
+    description = models.TextField(verbose_name="محتوا")
     slug = models.SlugField(max_length=128, unique=True,
                             verbose_name="آدرس مقاله")
     thumbnail = models.ImageField(
